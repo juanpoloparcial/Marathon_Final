@@ -58,19 +58,19 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
   return (
     <div className="grid grid-cols-4 gap-2 md:gap-4 mb-6">
       <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center">
-        <div className="text-2xl md:text-4xl font-bold text-[#d14536]">{timeLeft.days}</div>
+        <div className="text-2xl md:text-4xl font-bold text-[#007E33]">{timeLeft.days}</div>
         <div className="text-xs md:text-sm uppercase tracking-wide mt-1">Días</div>
       </div>
       <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center">
-        <div className="text-2xl md:text-4xl font-bold text-[#d14536]">{timeLeft.hours}</div>
+        <div className="text-2xl md:text-4xl font-bold text-[#007E33]">{timeLeft.hours}</div>
         <div className="text-xs md:text-sm uppercase tracking-wide mt-1">Horas</div>
       </div>
       <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center">
-        <div className="text-2xl md:text-4xl font-bold text-[#d14536]">{timeLeft.minutes}</div>
+        <div className="text-2xl md:text-4xl font-bold text-[#007E33]">{timeLeft.minutes}</div>
         <div className="text-xs md:text-sm uppercase tracking-wide mt-1">Min</div>
       </div>
       <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 text-center">
-        <div className="text-2xl md:text-4xl font-bold text-[#d14536]">{timeLeft.seconds}</div>
+        <div className="text-2xl md:text-4xl font-bold text-[#007E33]">{timeLeft.seconds}</div>
         <div className="text-xs md:text-sm uppercase tracking-wide mt-1">Seg</div>
       </div>
     </div>
@@ -155,6 +155,9 @@ export default function Home() {
 
   const editions = [
     { year: 'GeSPORT 2025', color: 'bg-red-600', link: '#', image: 'https://ext.same-assets.com/1514348712/2406533449.png' },
+    { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
+    { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
+    { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
     { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' }
   ];
 
@@ -181,19 +184,23 @@ export default function Home() {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
-            <Link href="/" className="hover:text-[#d14536] transition-colors text-sm font-semibold tracking-wide">INICIO</Link>
-            <Link href="/2026" className="hover:text-[#d14536] transition-colors text-sm font-semibold tracking-wide">2026</Link>
-            <Link href="/2025" className="hover:text-[#d14536] transition-colors text-sm font-semibold tracking-wide">2025</Link>
-            <a href="#contacto" className="hover:text-[#d14536] transition-colors text-sm font-semibold tracking-wide">CONTACTO</a>
+            <nav className="hidden lg:flex items-center space-x-8"> 
+            <Link href="/" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">INICIO</Link> 
+            <Link href="/2026" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">2026</Link> 
+            <Link href="/2025" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">2025</Link> 
+            <a href="#contacto" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">CONTACTO</a> 
+            <Link href="/" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">CALENDARIO</Link>
             </nav>
 
             {/* Quick Access Button - Desktop */}
-            <div className="hidden lg:block relative">
+            <div className="hidden lg:block relative lg:flex items-center gap-4">
+              <div className="ml-64">
+              <Link href="/login" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">
+                  INICIAR SESIÓN</Link>
+            </div>
               <button
                 onClick={() => setQuickAccessOpen(!quickAccessOpen)}
-                className="bg-[#d14536] hover:bg-[#b83a2d] text-white px-6 py-3 flex items-center gap-2 transition-colors text-sm font-semibold tracking-wide"
-              >
+                className="bg-[#009624] hover:bg-[#007E33] text-white px-6 py-3 flex items-center gap-2 transition-colors text-sm font-semibold tracking-wide">
                 ACCESO RÁPIDO
                 <ChevronDown className="w-4 h-4" />
               </button>
@@ -202,12 +209,12 @@ export default function Home() {
                   <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Inscripciones</a>
                   <a href="#ubicacion" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Ubicación</a>
                   <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Trayecto</a>
-                  <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Registro Mega Finisher</a>
-                  <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 text-sm"> 2026</a>
+                  <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">2026</a>
+                  <a href="#" className="block px-4 py-3 hover:bg-gray-100 text-sm">Registrarse</a>
                 </div>
               )}
             </div>
-
+          
             {/* Mobile Menu Button */}
             <button
               className="lg:hidden text-white"
@@ -257,7 +264,7 @@ export default function Home() {
             >
               <p className="text-xs md:text-sm mb-3 md:mb-4 tracking-wider">MARATÓN PROVINCIAL DE FORMOSA</p>
               <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-                LA ÚNICA MARATÓN OFICIAL DEL FORMOSA
+                LA ÚNICA MARATÓN OFICIAL DE FORMOSA
               </h1>
               <p className="text-sm md:text-lg mb-6 md:mb-8 max-w-xl">
                 Un evento inolvidable que une pasión, deporte e historia.
@@ -267,7 +274,7 @@ export default function Home() {
               <CountdownTimer targetDate={eventDate} />
 
               <Link href="/2026">
-                <button className="bg-black hover:bg-gray-900 text-white px-6 md:px-8 py-3 md:py-4 font-semibold tracking-wide transition-colors text-xs md:text-base">
+                <button className="bg-black hover:bg-[#006A22] text-white px-6 md:px-8 py-3 md:py-4 font-semibold tracking-wide transition-colors text-xs md:text-base">
                   MÁS INFORMACIÓN
                 </button>
               </Link>
@@ -292,22 +299,22 @@ export default function Home() {
                   className="w-full"
                 />
               </div>
-              <h3 className="text-[#d14536] text-2xl md:text-3xl font-bold mb-6">Detalles</h3>
+              <h3 className="text-[#007E33] text-2xl md:text-3xl font-bold mb-6">Detalles</h3>
               <div className="space-y-4 text-white">
                 <div className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-[#d14536] flex-shrink-0 mt-1" />
+                  <Calendar className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
                   <span className="text-sm md:text-base">30 DE AGOSTO, 2026</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-[#d14536] flex-shrink-0 mt-1" />
+                  <Clock className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
                   <span className="text-sm md:text-base">LARGADA 05:30 AM</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-[#d14536] flex-shrink-0 mt-1" />
+                  <MapPin className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
                   <span className="text-sm md:text-base">COSTANERA DE FORMOSA | FORMOSA, ARGENTINA</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Activity className="w-5 h-5 text-[#d14536] flex-shrink-0 mt-1" />
+                  <Activity className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
                   <span className="text-sm md:text-base">21KM / 10KM / 5KM</span>
                 </div>
               </div>
@@ -353,16 +360,16 @@ export default function Home() {
               variants={fadeInUp}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p className="text-[#d14536] text-sm md:text-base mb-2 tracking-wider font-semibold">EL INICIO DE UNA HISTORIA</p>
+              <p className="text-[#006A22] text-sm md:text-base mb-2 tracking-wider font-semibold">EL INICIO DE UNA HISTORIA</p>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-black">
                 MARATÓN EN FORMOSA
               </h2>
               <p className="text-gray-600 text-base md:text-lg mb-8 leading-relaxed">
                 Descubrí la única maratón oficial del Formosa: un evento inolvidable que une pasión y deporte.
               </p>
-              <div className="w-full h-1 bg-[#d14536] mb-8"></div>
+              <div className="w-full h-1 bg-[#007E33] mb-8"></div>
               <Link href="/2026">
-                <button className="bg-[#d14536] hover:bg-[#b83a2d] text-white px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
+                <button className="bg-[#006A22] hover:bg-[#007E33] text-white px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
                   MÁS INFORMACIÓN
                 </button>
               </Link>
@@ -392,7 +399,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-6xl font-bold text-[#d14536] mb-2">750</div>
+              <div className="text-4xl md:text-6xl font-bold text-[#007E33] mb-2">750</div>
               <p className="text-xs md:text-sm uppercase tracking-wider text-gray-400">PREMIOS ENTREGADOS</p>
             </motion.div>
 
@@ -407,7 +414,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-6xl font-bold text-[#d14536] mb-2">15000</div>
+              <div className="text-4xl md:text-6xl font-bold text-[#007E33] mb-2">15000</div>
               <p className="text-xs md:text-sm uppercase tracking-wider text-gray-400">CORREDORES ACTIVOS</p>
             </motion.div>
 
@@ -422,7 +429,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-6xl font-bold text-[#d14536] mb-2">2°</div>
+              <div className="text-4xl md:text-6xl font-bold text-[#007E33] mb-2">2°</div>
               <p className="text-xs md:text-sm uppercase tracking-wider text-gray-400">AÑO</p>
             </motion.div>
 
@@ -437,7 +444,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-6xl font-bold text-[#d14536] mb-2">300</div>
+              <div className="text-4xl md:text-6xl font-bold text-[#007E33] mb-2">300</div>
               <p className="text-xs md:text-sm uppercase tracking-wider text-gray-400">KILÓMETROS CORRIDOS</p>
             </motion.div>
           </div>
@@ -496,7 +503,7 @@ export default function Home() {
             En un máximo de 18 meses, gana tu NEA Leyenda y conviértete en una Leyenda de las carreras de la región.
           </p>
           <Link href="/2026">
-            <button className="bg-black hover:bg-gray-900 text-white px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
+            <button className="bg-black hover:bg-[#009624] text-white px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
               MÁS INFORMACIÓN
             </button>
           </Link>
@@ -528,7 +535,7 @@ export default function Home() {
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4">
-          <p className="text-[#d14536] text-center text-sm md:text-base mb-4 tracking-wider font-semibold">GeSPORT</p>
+          <p className="text-[#009624] text-center text-sm md:text-base mb-4 tracking-wider font-semibold">GESPORT</p>
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">RECONOCIMIENTO PROVINCIAL</h2>
 
           <div className="grid lg:grid-cols-3 gap-12 items-center max-w-6xl mx-auto">
@@ -684,10 +691,10 @@ export default function Home() {
           </div>
 
           <div className="space-y-4 mb-8">
-            <button className="w-full bg-black hover:bg-gray-900 text-[#d14536] px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
+            <button className="w-full bg-black hover:bg-gray-900 text-[#00B248] px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
               INSCRIPCIONES
             </button>
-            <button className="w-full bg-black hover:bg-gray-900 text-[#d14536] px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
+            <button className="w-full bg-black hover:bg-gray-900 text-[#00B248] px-8 py-4 font-semibold tracking-wide transition-colors text-sm md:text-base">
               WHATSAPP
             </button>
           </div>
@@ -718,10 +725,10 @@ export default function Home() {
                 Descubrí la única maratón oficial del Formosa: un evento inolvidable que une pasión y deporte.
               </p>
               <div className="flex gap-3 mt-4">
-                <a href="#" className="hover:text-[#d14536] transition-colors">
+                <a href="#" className="hover:text-[#00B248] transition-colors">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="hover:text-[#d14536] transition-colors">
+                <a href="#" className="hover:text-[#00B248] transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
@@ -729,7 +736,7 @@ export default function Home() {
 
             {/* Links */}
             <div>
-              <h4 className="text-[#d14536] text-sm font-bold mb-4 uppercase tracking-wider">LINKS</h4>
+              <h4 className="text-[#00B248] text-sm font-bold mb-4 uppercase tracking-wider">LINKS</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">PMC</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Eventrid</a></li>
@@ -740,7 +747,7 @@ export default function Home() {
 
             {/* Page */}
             <div>
-              <h4 className="text-[#d14536] text-sm font-bold mb-4 uppercase tracking-wider">PÁGINA</h4>
+              <h4 className="text-[#00B248] text-sm font-bold mb-4 uppercase tracking-wider">PÁGINA</h4>
               <ul className="space-y-2 text-sm">
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Inscripciones</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">GESPORT</a></li>
@@ -749,7 +756,7 @@ export default function Home() {
 
             {/* Contact */}
             <div>
-              <h4 className="text-[#d14536] text-sm font-bold mb-4 uppercase tracking-wider">CONTACTO</h4>
+              <h4 className="text-[#00B248] text-sm font-bold mb-4 uppercase tracking-wider">CONTACTO</h4>
               <div className="space-y-3 text-sm">
                 <div>
                   <p className="text-gray-500 text-xs mb-1">Teléfono</p>
