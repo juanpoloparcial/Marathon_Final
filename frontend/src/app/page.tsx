@@ -156,12 +156,11 @@ export default function Home() {
   const editions = [
     { year: 'GeSPORT 2025', color: 'bg-red-600', link: '#', image: 'https://ext.same-assets.com/1514348712/2406533449.png' },
     { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
-    { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
-    { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
-    { year: 'GeSPORT 2024', color: 'bg-blue-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' }
+    { year: 'GeSPORT 2023', color: 'bg-[#00B248]', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
+    { year: 'GeSPORT 2022', color: 'bg-gray-600', link: '#', image: 'https://ext.same-assets.com/1514348712/72072610.png' },
   ];
-
-  const eventDate = new Date('2026-08-30T05:30:00');
+  {/* Cuenta regresiva */}
+  const eventDate = new Date('2026-03-29T06:30:00');
 
   return (
     <div className="min-h-screen bg-white">
@@ -177,7 +176,7 @@ export default function Home() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <img
-                src="/gesport2.svg"
+                src="/correr.png"
                 alt="GeSPORT Logo"
                 className="h-12 md:h-16"
               />
@@ -189,30 +188,31 @@ export default function Home() {
             <Link href="/2026" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">2026</Link> 
             <Link href="/2025" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">2025</Link> 
             <a href="#contacto" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">CONTACTO</a> 
-            <Link href="/" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">CALENDARIO</Link>
+            <Link href="/calendario" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">CALENDARIO</Link>
             </nav>
 
-            {/* Quick Access Button - Desktop */}
-            <div className="hidden lg:block relative lg:flex items-center gap-4">
-              <div className="ml-64">
+            {/* Right - User + Quick Access */}
+            <div className="hidden lg:flex items-center gap-4">
               <Link href="/login" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">
-                  INICIAR SESIÓN</Link>
-            </div>
-              <button
-                onClick={() => setQuickAccessOpen(!quickAccessOpen)}
-                className="bg-[#009624] hover:bg-[#007E33] text-white px-6 py-3 flex items-center gap-2 transition-colors text-sm font-semibold tracking-wide">
-                ACCESO RÁPIDO
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              {quickAccessOpen && (
-                <div className="absolute top-full right-0 mt-2 w-64 bg-white shadow-lg text-black">
-                  <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Inscripciones</a>
-                  <a href="#ubicacion" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Ubicación</a>
-                  <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Trayecto</a>
-                  <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">2026</a>
-                  <a href="#" className="block px-4 py-3 hover:bg-gray-100 text-sm">Registrarse</a>
-                </div>
-              )}
+                INICIAR SESIÓN
+              </Link>
+              <div className="relative">
+                <button
+                  onClick={() => setQuickAccessOpen(!quickAccessOpen)}
+                  className="bg-[#009624] hover:bg-[#007E33] text-white px-6 py-3 flex items-center gap-2 transition-colors text-sm font-semibold tracking-wide">
+                  ACCESO RÁPIDO
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                {quickAccessOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-64 bg-white shadow-lg text-black">
+                    <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Inscripciones</a>
+                    <a href="#ubicacion" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Ubicación</a>
+                    <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Trayecto</a>
+                    <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">2026</a>
+                    <Link href="/register" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 text-sm">Registrarse</Link>
+                  </div>
+                )}
+              </div>
             </div>
           
             {/* Mobile Menu Button */}
@@ -303,11 +303,11 @@ export default function Home() {
               <div className="space-y-4 text-white">
                 <div className="flex items-start gap-3">
                   <Calendar className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
-                  <span className="text-sm md:text-base">30 DE AGOSTO, 2026</span>
+                  <span className="text-sm md:text-base">29 DE MARZO, 2026</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
-                  <span className="text-sm md:text-base">LARGADA 05:30 AM</span>
+                  <span className="text-sm md:text-base">LARGADA 06:30 AM</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#009624] flex-shrink-0 mt-1" />
@@ -624,7 +624,7 @@ export default function Home() {
 
       {/* Map Section */}
       <section className="bg-[#f8f6f5] py-16 md:py-24">
-        <section id="ubicacion" className="bg-[#f8f6f5] py-16 md:py-24" style={{ scrollMarginTop: '100px' }}></section>
+        <section id="ubicacion" className="bg-[#f8f6f5] py-16 md:py-2" style={{ scrollMarginTop: '100px' }}></section>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -749,7 +749,7 @@ export default function Home() {
             <div>
               <h4 className="text-[#00B248] text-sm font-bold mb-4 uppercase tracking-wider">PÁGINA</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Inscripciones</a></li>
+                <li><a href="/register" className="text-gray-400 hover:text-white transition-colors">Inscripciones</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">GESPORT</a></li>
               </ul>
             </div>

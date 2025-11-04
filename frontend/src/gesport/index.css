@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Transiciones suaves para el cambio de tema */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Asegurar que el html y body tengan el tema aplicado */
+html {
+  transition: background-color 0.3s ease;
+}
+
+body {
+  transition: background-color 0.3s ease;
+}
+
+/* Asegurar que el tema se aplique correctamente */
+html.dark {
+  color-scheme: dark;
+}
+
+.hide-scrollbar {
+  /* Para Firefox */
+  scrollbar-width: none;
+  /* Para Internet Explorer y Edge */
+  -ms-overflow-style: none;
+}
+
+/* Para Chrome, Safari y Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

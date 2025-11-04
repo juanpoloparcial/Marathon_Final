@@ -44,7 +44,7 @@ export default function Home() {
               <Link href="#contacto" className="text-white hover:text-[#00B248] transition-colors uppercase font-semibold tracking-wide">
                 CONTACTO
               </Link>
-              <Link href="/" className="text-white hover:text-[#00B248] transition-colors uppercase font-semibold tracking-wide">
+              <Link href="/calendario" className="text-white hover:text-[#00B248] transition-colors uppercase font-semibold tracking-wide">
                 CALENDARIO
               </Link>
             </nav>

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientBody from "./ClientBody";
 import Script from "next/script";
+import ThemeProviderClient from "@/components/ThemeProviderClient";
+import Navbar from "@/components/Navbar";
 
 
 const geistSans = Geist({
@@ -37,7 +39,10 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="antialiased">
-        <ClientBody>{children}</ClientBody>
+        <ThemeProviderClient>
+          <Navbar />
+          <ClientBody>{children}</ClientBody>
+        </ThemeProviderClient>
       </body>
     </html>
   );

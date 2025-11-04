@@ -13,5 +13,6 @@ export default function ClientBody({
     document.body.className = "antialiased";
   }, []);
 
-  return <div className="antialiased">{children}</div>;
+  // Add top padding to account for fixed navbar height
+  return <div className="antialiased pt-20 md:pt-24">{children}</div>;
 }
