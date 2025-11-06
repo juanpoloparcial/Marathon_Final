@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/gesport/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
+    const { register } = useAuth();
+    const router = useRouter();
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [email, setEmail] = useState('');
@@ -43,23 +47,17 @@ export default function Register() {
         setIsLoading(true);
 
         try {
-        const res = await fetch('http://localhost:3000/api/auth/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nombre, apellido, email, contrasenia }),
-        });
-        
-        const json = await res.json();
-        
-        if (res.ok) {
+        const json = await register({ nombre, apellido, email, contrasenia });
+        if (json) {
             alert('Éxito: Usuario registrado. Ya podés iniciar sesión.');
             setNombre('');
             setApellido('');
             setEmail('');
             setContrasenia('');
             setErrors({});
+            router.replace('/login');
         } else {
-            alert(`Error: ${json.message || 'No se pudo registrar.'}`);
+            alert('No se pudo registrar.');
         }
         } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Error desconocido';

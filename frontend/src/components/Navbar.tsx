@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useAuth } from "@/gesport/context/AuthContext";
 import { motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [quickAccessOpen, setQuickAccessOpen] = useState(false);
+  const { isAuthenticated, role, logout } = useAuth();
 
   return (
     <motion.header
@@ -34,9 +36,22 @@ export default function Navbar() {
 
           {/* Right - User + Quick Access */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link href="/login" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">
-              INICIAR SESIÓN
-            </Link>
+            {!isAuthenticated ? (
+              <>
+                <Link href="/login" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">INICIAR SESIÓN</Link>
+              </>
+            ) : (
+              <>
+                <Link href="/profile" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">MI PERFIL</Link>
+                {(role === 'admin' || role === 'superadmin') && (
+                  <Link href="/admin" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">ADMIN</Link>
+                )}
+                {role === 'superadmin' && (
+                  <Link href="/admin/users" className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">USUARIOS</Link>
+                )}
+                <button onClick={logout} className="hover:text-[#00B248] transition-colors text-sm font-semibold tracking-wide">SALIR</button>
+              </>
+            )}
             <div className="relative">
               <button
                 onClick={() => setQuickAccessOpen(!quickAccessOpen)}
@@ -51,7 +66,9 @@ export default function Navbar() {
                   <a href="#ubicacion" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Ubicación</a>
                   <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Trayecto</a>
                   <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">2026</a>
-                  <a href="/register" className="block px-4 py-3 hover:bg-gray-100 text-sm">Registrarse</a>
+                  {!isAuthenticated && (
+                    <Link href="/register" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 text-sm">Registrarse</Link>
+                  )}
                 </div>
               )}
             </div>

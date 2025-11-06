@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/gesport/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+    const { login } = useAuth();
+    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -55,17 +59,12 @@ export default function Login() {
         setIsLoading(true);
 
         try {
-        // Aquí iría tu lógica de autenticación
-        console.log('Datos de login:', formData);
-        
-        // Simular una petición async
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        alert('Login exitoso!');
+    await login(formData.email, formData.password);
+    router.replace('/profile');
         
         } catch (error) {
         console.error('Error en login:', error);
-        alert('Error al iniciar sesión');
+    alert('Error al iniciar sesión');
         } finally {
         setIsLoading(false);
         }

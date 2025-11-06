@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "@/gesport/context/AuthContext";
+import { useRouter } from "next/navigation";
 import FunctionalCalendar from "../components/FunctionalCalendar";
 import EventFormModal from "../components/home/EventFormModal";
 import EventDetailModal from "../components/home/EventDetailModal";
@@ -40,7 +42,9 @@ const Home = () => {
   const [selectedEventForDetail, setSelectedEventForDetail] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [eventToEdit, setEventToEdit] = useState(null);
-  const USER_ROLE = "admin";
+  const { isAuthenticated, role } = useAuth();
+  const router = useRouter();
+  const USER_ROLE = role === 'visitor' ? 'visitor' : role;
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -127,12 +131,11 @@ const Home = () => {
   };
 
   const handleEventRegisterToggle = (eventId) => {
-    // Alterna el flag 'registered' del evento sin cambiar estilos
-    setEvents((prev) =>
-      prev.map((ev) =>
-        ev.id === eventId ? { ...ev, registered: !ev.registered } : ev
-      )
-    );
+    if (!isAuthenticated) {
+      router.push('/login');
+      return;
+    }
+    setEvents((prev) => prev.map((ev) => ev.id === eventId ? { ...ev, registered: !ev.registered } : ev));
   };
 
   return (
