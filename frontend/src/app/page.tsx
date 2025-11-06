@@ -209,7 +209,7 @@ export default function Home() {
                     <a href="#ubicacion" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Ubicación</a>
                     <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Trayecto</a>
                     <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">2026</a>
-                    <Link href="/register" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 hover:bg-gray-100 text-sm">Registrarse</Link>
+                    <Link href="/register" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 bg-[#57bb5e] hover:bg-[#009624] text-sm">Registrarse</Link>
                   </div>
                 )}
               </div>

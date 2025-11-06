@@ -3,12 +3,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, ChevronDown, Calendar, Clock, MapPin, Activity, Phone, Mail, Facebook, Instagram } from 'lucide-react';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from 'framer-motion';
+
+// Animation variants (matching home page)
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
+};
 
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [quickAccessOpen, setQuickAccessOpen] = useState(false);
+
+  // Refs for scroll animations
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const infoRef = useRef<HTMLElement | null>(null);
+  const locationRef = useRef<HTMLElement | null>(null);
+  const trajectoryRef = useRef<HTMLElement | null>(null);
+  const resultsRef = useRef<HTMLElement | null>(null);
+  const photosRef = useRef<HTMLElement | null>(null);
+  const contactRef = useRef<HTMLElement | null>(null);
+
+  const infoInView = useInView(infoRef, { once: true, margin: "-100px" });
+  const locationInView = useInView(locationRef, { once: true, margin: "-100px" });
+  const trajectoryInView = useInView(trajectoryRef, { once: true, margin: "-100px" });
+  const resultsInView = useInView(resultsRef, { once: true, margin: "-100px" });
+  const photosInView = useInView(photosRef, { once: true, margin: "-100px" });
+  const contactInView = useInView(contactRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     document.title = "GESPORT";
@@ -16,7 +44,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800">
+      <motion.header
+        className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-gray-800"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -69,7 +102,7 @@ export default function Home() {
                   <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Trayecto</a>
                   <a href="#" className="block px-4 py-3 hover:bg-gray-100 border-b text-sm">Resultados</a>
                   <a href="/2026" className="block px-4 py-3 hover:bg-gray-100 text-sm"> 2026</a>
-                  <a href="#" className="block px-4 py-3 hover:bg-gray-100 text-sm"> Registrarse </a>
+                  <Link href="/register" onClick={() => setQuickAccessOpen(false)} className="block px-4 py-3 bg-[#57bb5e] hover:bg-[#009624] text-sm">Registrarse</Link>
                 </div>
               )}
             </div>
@@ -112,10 +145,10 @@ export default function Home() {
             </nav>
           )}
         </div>
-      </header>
+  </motion.header>
 
       {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden pt-20">
+  <section ref={heroRef} className="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden pt-20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/maraton_portada_gente.jpg"
@@ -123,8 +156,13 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-[#e27552] mb-6 font-oswald animate-fade-in">
+        <motion.div
+          className="relative z-10 text-center px-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-[#e27552] mb-6 font-oswald">
             GeSPORT 2025
           </h1>
           <div className="flex items-center justify-center gap-2 text-white text-base md:text-lg">
@@ -132,11 +170,18 @@ export default function Home() {
             <span>&gt;</span>
             <span>GeSPORT 2025</span>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Event Information Section */}
-      <section className="py-20 bg-black">
+      <motion.section
+        ref={infoRef}
+        className="py-20 bg-black"
+        initial="hidden"
+        animate={infoInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-12 uppercase">Información del Evento</h2>
 
@@ -226,10 +271,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+  </motion.section>
 
       {/* Location & Regulations Section */}
-      <section className="py-20 bg-[#141414]">
+      <motion.section
+        ref={locationRef}
+        className="py-20 bg-[#141414]"
+        initial="hidden"
+        animate={locationInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -254,10 +306,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+  </motion.section>
 
       {/* Trajectory Section */}
-      <section className="py-20 bg-black">
+      <motion.section
+        ref={trajectoryRef}
+        className="py-20 bg-black"
+        initial="hidden"
+        animate={trajectoryInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -285,10 +344,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+  </motion.section>
 
       {/* Results Section */}
-      <section className="py-20 bg-[#141414]">
+      <motion.section
+        ref={resultsRef}
+        className="py-20 bg-[#141414]"
+        initial="hidden"
+        animate={resultsInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -308,10 +374,17 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+  </motion.section>
 
       {/* Photos Section */}
-      <section className="py-20 bg-black">
+      <motion.section
+        ref={photosRef}
+        className="py-20 bg-black"
+        initial="hidden"
+        animate={photosInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px] rounded-lg overflow-hidden">
@@ -336,10 +409,18 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+  </motion.section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-black">
+      <motion.section
+        id="contacto"
+        ref={contactRef}
+        className="py-20 bg-black"
+        initial="hidden"
+        animate={contactInView ? "visible" : "hidden"}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 mb-16">
             <div>
@@ -437,7 +518,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+  </motion.section>
     </div>
   );
 }
